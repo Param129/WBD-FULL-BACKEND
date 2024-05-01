@@ -26,7 +26,7 @@ import { errorMiddleware } from './middleware/errorMiddleware.js';
 //Third party middleware
 app.use(cors({
     credentials:true,
-    origin: "*",
+    origin: "https://react-frontend-hazel.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE","PATCH"]
    
   }))
