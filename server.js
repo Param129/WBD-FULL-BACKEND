@@ -9,7 +9,7 @@ dotenv.config();
           // DATABASE cONNECTION
 const uri= process.env.MONGO_URL
 const port= process.env.PORT
-connectDB()
+connectDB();
 
 
 
