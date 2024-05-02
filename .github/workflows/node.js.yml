@@ -1,0 +1,45 @@
+name: Node.JS CI/CD
+
+on:
+  push:
+    paths:
+    - 'Server/**'
+    branches: ["main"]
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Use Node.JS ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependencies and run tests
+      env:
+        NODE_ENV: ${{ secrets.NODE_ENV }}
+        MONGO_USER: ${{ secrets.MONGO_USER }}
+        MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+        MONGO_DEFAULT_DATABASE: ${{ secrets.MONGO_DEFAULT_DATABASE }}
+        cloud_name: ${{ secrets.cloud_name }}
+        api_key: ${{ secrets.api_key }}
+        api_secret: ${{ secrets.api_secret }}
+        json_secret: ${{ secrets.json_secret }}
+      run: |
+        npm install pm2 -g
+        npm install
+        pm2 start app.js
+        sleep 20
+        npm test
+        pm2 stop app
+      working-directory: Server
