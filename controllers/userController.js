@@ -8,41 +8,43 @@ import  sendToken  from "../utils/JWTtoken.js";
 import { asyncError } from "../middleware/errorMiddleware.js";
 import ErrorHandler from "../utils/errorhandler.js";
 import { log } from "console";
-import {v2 as cloudinary} from "cloudinary"
+import cloudinary from 'cloudinary';
 
 
 
 // register a user
 export const registerUser = async(req,res,next) => {
-   
+    let myCloud
+    try {
+        myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
+            folder:"avatar",
+            width:150,
+            crop:"scale",
+        });
+    } catch (err) {
+        console.log("trigger ", err)
+    }
 
+    console.log(myCloud);
     const { name, email, password, age, phone, bloodgrp, gender, address } = req.body;
-    console.log(name, email);
+
     const user = await User.findOne({email:email});
 
     if(user){
         return res.status(400).json({msg:"User already registered."});
         
     }
-    // handling for images
-    const avatarLocalpath = req.file?.path;
-    if (!avatarLocalpath) {
-        return res.status(400).json({ msg: "avatarUrl is required" });
-    }
-    console.log(avatarLocalpath);
-    const avatar = await uploadOnCloudinary(avatarLocalpath);
-    if (!avatar || !avatar.url) {
-        return res.status(500).json({ msg: "Error uploading avatar" });
-    }
-    
-    console.log(avatar.url);
+   
 
 
     
     try {
         const user = await User.create({
             name, email, password, age, phone, bloodgrp, gender, address,
-            avatar: avatar.url
+            avatar:{
+                public_id : myCloud.public_id,
+                url : myCloud.secure_url,
+            }
         });
         return res.status(201).json({
             success: true,

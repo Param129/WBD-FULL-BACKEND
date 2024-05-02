@@ -10,7 +10,7 @@ var csrfProtection = csrf({ cookie: true })
 import  {registerUser, loginUser, logout,updateuserProfile,getAllUsers,getsingleUser,getuserDetails,updateUSerRole,deleteUser,updatePassword,getAllHospital,deleteHospital,updateStatus, getSingleHospital, addDonor, addReceiver, getHistory} from "../controllers/userController.js"
 
 router.route("/register").post(
-    upload.single("avatar"),
+    // upload.single({name:"avatar",maxCount:1}),
     registerUser)
 router.route("/login").post(loginUser);
 router.route("/logout").get(logout)

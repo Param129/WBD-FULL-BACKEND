@@ -25,11 +25,11 @@ import  hospitalroutes from "./routes/hospitalRoutes.js"
 import { errorMiddleware } from './middleware/errorMiddleware.js';
 //Third party middleware
 app.use(cors({
-    credentials:true,
-    origin: "https://react-frontend-hazel.vercel.app/",
-    methods: ["GET", "POST", "PUT", "DELETE","PATCH"]
-   
-  }))
+  credentials:true,
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE","PATCH"]
+ 
+}))
   //Router MIddleware
   app.use(loggerMiddleware);
 app.use("/blood/v1",user);

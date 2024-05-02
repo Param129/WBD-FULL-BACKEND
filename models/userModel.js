@@ -33,15 +33,15 @@ const userSchema = new mongoose.Schema({
         select:false
     },
 
-    avatar:
+    avatar: // instead of object we created image array[],array of object.
     {
         public_id:{
             type:String,
-            default:"https://picsum.photos/id/237/200/300"
+            required:true
         },
         url:{
             type:String,
-            default:"https://picsum.photos/id/237/200/300"
+            required:true
         }
     },
 
