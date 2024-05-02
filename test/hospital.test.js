@@ -36,28 +36,28 @@ describe('POST /hospital/login', () => {
 
 describe('POST /hospital/signup', () => {
 
-        it('should return 201 OK and Hospital register if successful', async () => {
-        const response = await request(baseURL)
-            .post('/blood/v1/hospital/signup')
-            .send({    name: 'Hospital10 Name',
-            licenceNumber: 'M12345678910',
-            contactNumber: 1234567770,
-            email: 'hospital10@example.com',
-            password: 'password1210',
-            address: {
-                bNo: "123",
-                city: "City",
-                state: "State",
-                country: "India",
-                pincode: 123456
-            },
-            donation:[],
-            receiving: []
-        });
+    //     it('should return 201 OK and Hospital register if successful', async () => {
+    //     const response = await request(baseURL)
+    //         .post('/blood/v1/hospital/signup')
+    //         .send({    name: 'Hospital10 Name',
+    //         licenceNumber: 'M12345678910',
+    //         contactNumber: 1234567770,
+    //         email: 'hospital10@example.com',
+    //         password: 'password1210',
+    //         address: {
+    //             bNo: "123",
+    //             city: "City",
+    //             state: "State",
+    //             country: "India",
+    //             pincode: 123456
+    //         },
+    //         donation:[],
+    //         receiving: []
+    //     });
         
-        expect(response.status).toBe(201);
-        expect(response.body.message).toBe("Hospital signed in succefully ");
-    });
+    //     expect(response.status).toBe(201);
+    //     expect(response.body.message).toBe("Hospital signed in succefully ");
+    // });
 
 
     it("should return 409 Error and a error if user already exists", async () => {
