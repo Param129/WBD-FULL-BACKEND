@@ -18,6 +18,12 @@ export const registerUser = async(req,res,next) => {
 
     const { name, email, password, age, phone, bloodgrp, gender, address } = req.body;
     console.log(name, email);
+    const user = await User.findOne({email:email});
+
+    if(user){
+        return res.status(400).json({msg:"User already registered."});
+        
+    }
     // handling for images
     const avatarLocalpath = req.file?.path;
     if (!avatarLocalpath) {
@@ -30,6 +36,8 @@ export const registerUser = async(req,res,next) => {
     }
     
     console.log(avatar.url);
+
+
     
     try {
         const user = await User.create({

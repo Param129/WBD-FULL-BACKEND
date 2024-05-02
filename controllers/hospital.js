@@ -33,7 +33,7 @@ export const hospitalSignup = asyncError( async (req,res,next)=>{
         console.log(hospital);
         res.status(409).json({
             success:false,
-            message:'User already exist'
+            message:'Hospital already exist'
         })
        }
        else{
@@ -59,17 +59,18 @@ export const hospitalLogin =  asyncError(async (req,res,next)=>{
        res.cookie('isLoggedin',token)
         res.status(200).json({
             success:true,
-            hospital
+            hospital,
+            token
         })
      
      }else{
-        res.status(401).json({
+        res.status(400).json({
             success:false,
             message:'Enter correct password',
         })
      }
     }else{
-        res.status(401).json({
+        res.status(400).json({
             success:false,
             message:'Invalid credential'
         })
@@ -96,10 +97,12 @@ if(hospitals){
 
 // hospitals=hospitals.filter((hospital,bg)=>hospital.blood>0);
 res.status(200).json({
+  msg:"hospital fetched successfully",
   hospitals
 })
 }else{
  req.status(200).json({
+  msg:"no hospital found",
   hospitals:[]
  })
 }
