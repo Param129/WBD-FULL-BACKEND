@@ -1,0 +1,8 @@
+PASS test/hospital.test.js
+PASS test/user.test.js
+
+Test Suites: 2 passed, 2 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        4.871 s, estimated 8 s
+Ran all test suites.

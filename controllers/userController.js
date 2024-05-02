@@ -14,18 +14,18 @@ import cloudinary from 'cloudinary';
 
 // register a user
 export const registerUser = async(req,res,next) => {
-    let myCloud
-    try {
-        myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
-            folder:"avatar",
-            width:150,
-            crop:"scale",
-        });
-    } catch (err) {
-        console.log("trigger ", err)
-    }
+    // let myCloud
+    // try {
+    //     myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
+    //         folder:"avatar",
+    //         width:150,
+    //         crop:"scale",
+    //     });
+    // } catch (err) {
+    //     console.log("trigger ", err)
+    // }
 
-    console.log(myCloud);
+    // console.log(myCloud);
     const { name, email, password, age, phone, bloodgrp, gender, address } = req.body;
 
     const user = await User.findOne({email:email});
