@@ -7,7 +7,6 @@ name:{
 email:{
     type:String,
     required:true,
-    unique:true
 },
 password:{
     type:String,
@@ -16,12 +15,10 @@ password:{
 },
 licenceNumber:{
     type:String,
-    unique:true,
     required:true
 },
 contactNumber:{
     type:Number,
-    unique:true,
     required:true
 },
 hospitalStatus:{
