@@ -39,11 +39,11 @@ describe('POST /hospital/signup', () => {
         it('should return 201 OK and Hospital register if successful', async () => {
         const response = await request(baseURL)
             .post('/blood/v1/hospital/signup')
-            .send({    name: 'Hospital4 Name',
-            licenceNumber: 'M1234567890',
-            contactNumber: 1234567887,
-            email: 'hospital4@example.com',
-            password: 'password1239',
+            .send({    name: 'Hospital10 Name',
+            licenceNumber: 'M12345678910',
+            contactNumber: 1234567770,
+            email: 'hospital10@example.com',
+            password: 'password1210',
             address: {
                 bNo: "123",
                 city: "City",
